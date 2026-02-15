@@ -1,10 +1,10 @@
-import { expect } from "@playwright/test"
 import { BasePage } from "./BasePage";
 
 export class RegistrationPage extends BasePage{
 
     constructor(page)
     {
+        super(page);
         this.page=page;
         this.accoutLink=page.locator("//a[text()='Account']");
         this.registerHeader=page.locator("//*[text()='Register']");
@@ -19,7 +19,6 @@ export class RegistrationPage extends BasePage{
 
     async doSignup(userName,email,password)
     {
-        //await this.page.waitFor(this.registerHeader);
         await this.register_username.fill("");
         await this.register_username.fill(userName);
         await this.register_email.fill("");
