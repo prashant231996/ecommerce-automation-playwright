@@ -1,4 +1,5 @@
 import { BasePage } from "./BasePage";
+import { HomePage } from "./HomePage";
 export class LoginPage extends BasePage{
 
     constructor(page)
@@ -17,5 +18,6 @@ export class LoginPage extends BasePage{
         await this.passwordField.fill("");
         await this.passwordField.fill(password);
         await this.loginBtn.click();
+        return new HomePage(this.page);
     }
 }  

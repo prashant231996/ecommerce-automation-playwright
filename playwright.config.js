@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+const envConfig = require('./configs/envSelector');
 
 /**
  * Read environment variables from file.
@@ -39,7 +40,10 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    screenshot:'only-on-failure'
+    screenshot:'only-on-failure',
+    baseURL: envConfig.baseURL,
+    username: envConfig.username,
+    password: envConfig.password
   },
 
   /* Configure projects for major browsers */

@@ -1,12 +1,12 @@
 const {test}=require("@playwright/test");
 import { LoginPage} from "../Pages/LoginPage";
+const envConfig = require('../configs/envSelector');
 
 test("Login Test",async({page})=>
 {
     const loginPage=new LoginPage(page);
     await loginPage.navigateToAccountPage();
-    await loginPage.doLogin("TestUserPM","Test@12345");
-    await loginPage.verifyUserLoggedIn("TestUserPM");
-    await loginPage.logoutFromApp();
-
+    const homepage=await loginPage.doLogin(envConfig.username,envConfig.password);
+    await homepage.verifyUserLoggedIn(envConfig.username);
+    await homepage.logoutFromApp();
 })
