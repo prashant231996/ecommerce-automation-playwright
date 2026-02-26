@@ -1,15 +1,12 @@
-const {test}=require("@playwright/test");
+const {test}=require("../tests/base/baseTest");
 const { LoginPage } = require("../Pages/LoginPage");
 const envConfig = require("../configs/envSelector");
+const { HomePage } = require("../Pages/HomePage");
 
-test("Verify search product functionality",async({page})=>
+test("Verify search product functionality",async({loggedInPage})=>
 {
-    const loginPage = new LoginPage(page);
-    await loginPage.navigateToAccountPage();
-    const homepage = await loginPage.doLogin(envConfig.username, envConfig.password);
-    await homepage.verifyUserLoggedIn(envConfig.username);
+    const homepage = new HomePage(loggedInPage);
     const storePage=await homepage.navigateToStorPage();
     const productPage=await storePage.searchProduct(envConfig.productName);
     await productPage.verifyProductTitle(envConfig.productName);
-    await productPage.logoutFromApp();
 });

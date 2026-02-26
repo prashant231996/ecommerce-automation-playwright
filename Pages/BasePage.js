@@ -8,10 +8,11 @@ export class BasePage{
         this.accountPageLink=page.locator("#ast-desktop-header a[href*='/account']");
         this.logoutLink=page.locator("//a[text()='Logout']")
         this.errorMsg=page.locator("//*[contains(@class,'notices-wrapper')]//*[contains(text(),'Error')]");
+        this.pageTitle=page.locator(".page-title");
     }
 
     async logoutFromApp() {
-        await this.accountPageLink.waitFor({ state: 'visible' });
+       await this.accountPageLink.waitFor({ state: 'visible' });
         await expect(this.accountPageLink).toBeEnabled();
         await this.accountPageLink.click();
         await this.logoutLink.waitFor({ state: 'visible' });
@@ -37,5 +38,10 @@ export class BasePage{
      async verifyErrorMsgDisplayedOnAccountPage()
     {
         await expect(this.errorMsg).toBeVisible();
+    }
+
+    async verifyPageTitle(pageTitle)
+    {
+        await expect(this.pageTitle).toHaveText(pageTitle);
     }
 }

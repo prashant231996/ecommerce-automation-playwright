@@ -15,10 +15,4 @@ export class HomePage extends BasePage{
         await this.shopNowLink.click();
         return new StorePage(this.page);
     }
-
-    async verifyUserLoggedIn(displayname) {
-        this.userDisplayName = this.page.locator("(//*[contains(text(),'" + displayname + "')])[1]");
-        await expect(this.userDisplayName).toBeVisible();
-        await expect(this.logoutLink).toBeVisible();
-    }
 }
