@@ -1,6 +1,5 @@
 import { BasePage } from "./BasePage";
 import { StorePage } from "./StorePage";
-const {expect}=require("@playwright/test");
 
 
 export class HomePage extends BasePage{
